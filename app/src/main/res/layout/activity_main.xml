@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ListView
+        android:id="@+id/diary_list"
+        android:layout_width="wrap_content"
+        android:layout_height="450sp" />
+
+    <Button
+        android:id="@+id/meal_button"
+        android:text="@string/meal_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:onClick="createMealButtonClicked"/>
+
+</LinearLayout>
+

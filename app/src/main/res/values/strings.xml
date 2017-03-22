@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FoodTracker2</string>
+    <string name="meal_create">Create Meal</string>
+</resources>
