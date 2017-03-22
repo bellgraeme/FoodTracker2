@@ -1,6 +1,9 @@
 package com.codeclan.foodtracker2;
 
+import android.telecom.Call;
+
 import java.net.InterfaceAddress;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
@@ -17,11 +20,17 @@ public class Meal implements Comparable<Meal>{
     public Meal(String name, Calendar date) {
         this.name = name;
         this.ingredients = new HashMap<Item, Integer>();
-        this.cal = cal;
+        this.cal = cal.getInstance();
     }
 
-    public Date getDate() {
-        return cal.getTime();
+    public String getDate() {
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+        String formatted = format1.format(this.cal.getTime());
+        return formatted;
+    }
+
+    public Calendar calendarTime(){
+        return this.cal;
     }
 
     public void setDate(Calendar date) {
@@ -136,8 +145,8 @@ public class Meal implements Comparable<Meal>{
         @Override
         public int compare(Meal meal, Meal t1) {
 
-            Date date = meal.getDate();
-            Date date1 = t1.getDate();
+            Calendar date = meal.calendarTime();
+            Calendar date1 = t1.calendarTime();
 
             return date.compareTo(date1);
         }
@@ -159,5 +168,11 @@ public class Meal implements Comparable<Meal>{
         }
     }
 
+
+    public static Calendar toCalendar(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal;
+    }
 }
 

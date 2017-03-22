@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">FoodTracker2</string>
     <string name="meal_create">Create Meal</string>
+    <string name="item_here">Ingredient</string>
+    <string name="quantity_here">Weight/Volume</string>
+    <string name="name_meal">Name</string>
+    <string name="name_hint">Enter your meals description here</string>
 </resources>
