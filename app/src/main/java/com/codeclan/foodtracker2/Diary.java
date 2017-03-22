@@ -37,7 +37,7 @@ public class Diary {
     public ArrayList<Meal> setDiary() {
         return new ArrayList<Meal>(meals);
     }
-    public ArrayList<Meal>getDiary(){
+    public ArrayList<Meal> getDiary(){
         return this.meals;
     }
 

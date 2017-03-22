@@ -6,12 +6,90 @@
     android:layout_height="match_parent"
     tools:context="com.codeclan.foodtracker2.IngredientActivity">
 
+    <TextView
+        android:id="@+id/meal_header"
+        android:text="@string/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/"/>
+        android:text="@string/name_meal"
+        android:textSize="22sp"/>
+
+    <EditText
+        android:id="@+id/edit_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_hint"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/day_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:text="@string/enter_day"/>
+
+    <EditText
+        android:id="@+id/day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:textSize="14sp"
+        android:hint="@string/date_hint"/>
+
+    <TextView
+        android:id="@+id/month_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:text="@string/enter_month"/>
+
+    <EditText
+        android:id="@+id/month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:textSize="14sp"
+        android:hint="@string/month_hint"/>
+
+    <TextView
+        android:id="@+id/year_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:text="@string/enter_year"/>
+
+    <EditText
+        android:id="@+id/year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:textSize="14sp"
+        android:hint="@string/year_hint"/>
+    <Button
+        android:id="@+id/addIngredient_button"
+        android:text="@string/addIngredient_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:onClick="addIngredient"/>
+
+    <Button
+        android:id="@+id/create_meal_button"
+        android:text="@string/add_meal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:onClick="createMeal"/>
+
+
 
 
 

@@ -4,5 +4,15 @@
     <string name="item_here">Ingredient</string>
     <string name="quantity_here">Weight/Volume</string>
     <string name="name_meal">Name</string>
-    <string name="name_hint">Enter your meals description here</string>
+    <string name="name_hint">Enter your Meals\' descriptions here</string>
+    <string name="enter_day">Enter Day of the Month</string>
+    <string name="header">Please enter the details of you meal below and \"Add Ingredients\"</string>
+    <string name="date_hint">Enter the Day here</string>
+    <string name="enter_month">Enter Month</string>
+    <string name="month_hint">Enter the Month Here</string>
+    <string name="enter_year">Enter Year</string>
+    <string name="year_hint">Enter the Year Here</string>
+    <string name="addIngredient_create">Click to Add Ingredient</string>
+    <string name="add_meal">Add Meal to Diary</string>
+
 </resources>

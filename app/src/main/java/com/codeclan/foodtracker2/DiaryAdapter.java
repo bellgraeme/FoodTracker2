@@ -27,9 +27,11 @@ public class DiaryAdapter extends ArrayAdapter<Meal> {
 
         TextView mealName = (TextView)listItemView.findViewById(R.id.mealName);
         mealName.setText(currentMeal.getName());
+        mealName.setTag(currentMeal);
 
         TextView mealDate = (TextView)listItemView.findViewById(R.id.mealDate);
         mealDate.setText(currentMeal.getDate().toString());
+        mealName.setTag(currentMeal);
 
         return listItemView;
     }

@@ -16,7 +16,7 @@
         />
 
     <EditText
-        android:id="@+id/item_input"
+        android:id="@+id/item"
         android:layout_width="match_parent"
         android:layout_height="80sp"
         android:layout_gravity="center"/>
@@ -28,10 +28,16 @@
         android:text="@string/quantity_here"/>
 
     <EditText
-        android:id="@+id/quantity_input"
+        android:id="@+id/weight"
         android:layout_width="match_parent"
         android:layout_height="80sp"
         android:layout_gravity="center"/>
+    <Button
+        android:id="@+id/ingredient_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/addIngredient_create"
+        android:onClick="onClick"/>
 
 
 </LinearLayout>

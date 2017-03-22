@@ -1,25 +1,22 @@
 package com.codeclan.foodtracker2;
+
+
 import android.content.Intent;
 import android.view.View;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.DatePicker;
+
 
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,12 +27,16 @@ import static com.codeclan.foodtracker2.MainActivity.FOODTRACKER;
 
 public class MealActivity extends AppCompatActivity {
     private Meal meal;
-    private DatePicker datePicker;
-    private Calendar calendar;
-    private int year, month, day;
-    private String name;
     private Date date;
-    private TextView dateView;
+    private String name;
+    String day;
+    String month;
+    String year;
+    String item;
+    int weight;
+    private Larder larder;
+    private ArrayList<Item> food;
+    Calendar cal;
 
 
 
@@ -43,65 +44,71 @@ public class MealActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal);
+        item = getIntent().getStringExtra("item");
+        weight = getIntent().getIntExtra("weight", weight);
+        larder = new Larder();
+        larder.setLarder();
+        food = larder.getFood();
+        meal = new Meal("temp", cal);
+        addItemToMeal(item, weight);
 
     }
 
-    public static Calendar toCalendar(Date date){
+    public void addItemToMeal(String name, int weight){
+        Item item = larder.getItemByName(name);
+        meal.addItemToMeal(item, weight);
+    }
+
+    public static Calendar toCalendar(Date date) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return cal;
     }
 
 
+    public void addIngredient(View button) {
+        Intent intent = new Intent(this, IngredientActivity.class);
+        startActivity(intent);
+    }
 
 
-//    public void addIngredient(){
-//        Intent intent = new Intent(this, IngredientActivity.class);
-//        startActivity(intent);
-//    }
+    public void createMeal(View button) {
+        EditText dayET = (EditText)findViewById(R.id.day);
+        day = dayET.getText().toString();
+        EditText monthET = (EditText)findViewById(R.id.month);
+        month = monthET.getText().toString();
+        EditText yearET = (EditText)findViewById(R.id.year);
+        year = yearET.getText().toString();
+        String dateString = year + "-" + month + "-" + day;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date selectedDate = formatter.parse(dateString);
+            Calendar cal = toCalendar(selectedDate);
+            meal.setDate(cal);
+        }catch(ParseException pe){
+            Log.d("Date failed", pe.getMessage());
+            meal.setDate(cal);
+        }
 
-
-    public void createMeal(View button){
-        Calendar cal = toCalendar(date);
-        meal.setDate(cal);
-//
-//        EditText mealName = (EditText) findViewById(R.id.meal_name);
-//        name = mealName.getText().toString();
-
+        EditText mealName = (EditText) findViewById(R.id.edit_name);
+        name = mealName.getText().toString();
         meal.setName(name);
         meal.zeroWeight();
-        Log.d("meal",  meal.getName());
+        Log.d("meal", meal.getName());
 
         SharedPreferences sharedPref = getSharedPreferences(FOODTRACKER, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
+        String diary = sharedPref.getString("Diary", "Nothing here");
         Gson gson = new Gson();
-        editor.putString(meal.getName(), gson.toJson(meal));
+        TypeToken<ArrayList<Meal>> token = new TypeToken<ArrayList<Meal>>(){};
+        ArrayList<Meal> foodTracker = gson.fromJson(diary, token.getType());
+
+        foodTracker.add(meal);
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("Diary", gson.toJson(foodTracker));
         editor.apply();
-        Intent intent = new Intent();
-
-        Bundle this_bundle= new Bundle();
-        this_bundle.putString("myObj", "date");
-
-
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
-
-
-
-    public void addMealToSharedPreferences(View view){
-        SharedPreferences sharedPref = getSharedPreferences(FOODTRACKER, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-
-        Gson gson = new Gson();
-
-//        //Add Meals to sharedPrefs as a JSON String. Then Apply.
-//        editor.putString("Meal", gson.toJson(larder));
-//        editor.apply();
-
-        Toast.makeText(MealActivity.this, "Meal added to Diary", Toast.LENGTH_LONG).show();
-    }
-
-
-
-
 
 }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 public class Larder {
 
+
+
     ArrayList<Item> food;
 
     public Larder() {
@@ -16,15 +18,19 @@ public class Larder {
         food.add(new Item("beer", 200,0,0,60));
     }
 
-    public ArrayList<Item> getLarder() {
+    public ArrayList<Item> setLarder() {
         return new ArrayList<Item>(food) ;
     }
 
+    public ArrayList<Item> getFood() {
+        return food;
+    }
 
 
     public void addItemToLarder(Item item){
         this.food.add(item);
     }
+
 
     public Item getItemByName(String name){
         for(Item item : this.food){
@@ -34,8 +40,6 @@ public class Larder {
         }
         return null;
     }
-
-
 
     public int getLarderSize(){
         return this.food.size();
