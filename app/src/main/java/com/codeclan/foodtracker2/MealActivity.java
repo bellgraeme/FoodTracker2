@@ -1,6 +1,5 @@
 package com.codeclan.foodtracker2;
 
-
 import android.content.Intent;
 import android.view.View;
 import android.os.Bundle;
@@ -8,14 +7,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
 import android.widget.EditText;
-
-
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -97,7 +91,7 @@ public class MealActivity extends AppCompatActivity {
         Log.d("meal", meal.getName());
 
         SharedPreferences sharedPref = getSharedPreferences(FOODTRACKER, Context.MODE_PRIVATE);
-        String diary = sharedPref.getString("Diary", "Nothing here");
+        String diary = sharedPref.getString("Diary",  new ArrayList<Meal>().toString());
         Gson gson = new Gson();
         TypeToken<ArrayList<Meal>> token = new TypeToken<ArrayList<Meal>>(){};
         ArrayList<Meal> foodTracker = gson.fromJson(diary, token.getType());

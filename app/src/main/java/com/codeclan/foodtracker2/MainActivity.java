@@ -23,15 +23,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharedPreferences sharedPref = getSharedPreferences(FOODTRACKER, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+
 
         diary = new Diary();
         diary.setDiary();
         ArrayList<Meal>list = diary.getDiary();
 
-        SharedPreferences sharedPref = getSharedPreferences(FOODTRACKER, Context.MODE_PRIVATE);
-        String diary = sharedPref.getString("Diary", "Nothing here");
-
+        String diary = sharedPref.getString("Diary", new ArrayList<Meal>().toString());
         Gson gson = new Gson();
+
         TypeToken<ArrayList<Meal>> token = new TypeToken<ArrayList<Meal>>(){};
         ArrayList<Meal> foodTracker = gson.fromJson(diary, token.getType());
 
@@ -41,11 +44,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onItemClicked(View view){
-        TextView textView = (TextView) textView;
+        TextView textView = (TextView) findViewById(R.id.mealName);
         Meal meal = (Meal)textView.getTag();
 
         Intent intent = new Intent(this , BreakdownActivity.class);
-        intent.putExtra("meal", meal.getName());
+        intent.putExtra("meal", meal);
+        startActivity(intent);
     }
 
     public void createMealButtonClicked(View button) {

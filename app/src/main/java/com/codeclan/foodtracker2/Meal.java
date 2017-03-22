@@ -2,6 +2,7 @@ package com.codeclan.foodtracker2;
 
 import android.telecom.Call;
 
+import java.io.Serializable;
 import java.net.InterfaceAddress;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,7 +12,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class Meal implements Comparable<Meal>{
+public class Meal implements Comparable<Meal>, Serializable{
 
     private String  name;
     private Calendar cal;
