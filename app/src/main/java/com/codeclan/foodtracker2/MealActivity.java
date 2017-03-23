@@ -91,7 +91,7 @@ public class MealActivity extends AppCompatActivity {
         Log.d("meal", meal.getName());
 
         SharedPreferences sharedPref = getSharedPreferences(FOODTRACKER, Context.MODE_PRIVATE);
-        String diary = sharedPref.getString("Diary",  new ArrayList<Meal>().toString());
+        String diary = sharedPref.getString("foodDiary",  new ArrayList<Meal>().toString());
         Gson gson = new Gson();
         TypeToken<ArrayList<Meal>> token = new TypeToken<ArrayList<Meal>>(){};
         ArrayList<Meal> foodTracker = gson.fromJson(diary, token.getType());
@@ -99,7 +99,7 @@ public class MealActivity extends AppCompatActivity {
         foodTracker.add(meal);
 
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("Diary", gson.toJson(foodTracker));
+        editor.putString("foodDiary", gson.toJson(foodTracker));
         editor.apply();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -25,16 +26,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SharedPreferences sharedPref = getSharedPreferences(FOODTRACKER, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-
+//        editor.clear();
+//editor.commit();
 
 
         diary = new Diary();
         diary.setDiary();
         ArrayList<Meal>list = diary.getDiary();
 
-        String diary = sharedPref.getString("Diary", new ArrayList<Meal>().toString());
+        String diary = sharedPref.getString("foodDiary", new ArrayList<Meal>().toString());
         Gson gson = new Gson();
-
+        Log.d("DIARY", diary);
         TypeToken<ArrayList<Meal>> token = new TypeToken<ArrayList<Meal>>(){};
         ArrayList<Meal> foodTracker = gson.fromJson(diary, token.getType());
 
