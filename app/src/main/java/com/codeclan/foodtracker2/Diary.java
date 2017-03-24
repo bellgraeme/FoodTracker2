@@ -16,12 +16,12 @@ public class Diary {
         this.meals = new ArrayList<Meal>();
         Calendar date;
         date = Calendar.getInstance();
-        Meal meal1 = new Meal("someMeal", date);
-        Meal meal2 = new Meal("someMeal", date);
-        Meal meal3 = new Meal("someMeal", date);
-        Meal meal4 = new Meal("someMeal", date);
-        Meal meal5 = new Meal("someMeal", date);
-        Meal meal6 = new Meal("someMeal", date);
+        Meal meal1 = new Meal("someMeal",date);
+        Meal meal2 = new Meal("someMeal",date);
+        Meal meal3 = new Meal("someMeal",date);
+        Meal meal4 = new Meal("someMeal",date);
+        Meal meal5 = new Meal("someMeal",date);
+        Meal meal6 = new Meal("someMeal",date);
         meals.add(meal1);
         meals.add(meal2);
         meals.add(meal3);

@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences(FOODTRACKER, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 //        editor.clear();
-//editor.commit();
+//        editor.commit();
 
 
         diary = new Diary();

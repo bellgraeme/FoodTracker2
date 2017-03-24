@@ -15,5 +15,6 @@
     <string name="addIngredient_create">Click to Add Ingredient</string>
     <string name="add_meal">Add Meal to Diary</string>
     <string name="blurb">This is a break down of your meal.</string>
+    <string name="toast_error">Please input valid info</string>
 
 </resources>

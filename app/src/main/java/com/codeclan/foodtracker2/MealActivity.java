@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.text.ParseException;
@@ -23,11 +25,11 @@ public class MealActivity extends AppCompatActivity {
     private Meal meal;
     private Date date;
     private String name;
-    String day;
-    String month;
-    String year;
-    String item;
-    int weight;
+    private String day;
+    private String month;
+    private String year;
+    private String item;
+    private int weight;
     private Larder larder;
     private ArrayList<Item> food;
     Calendar cal;
@@ -49,8 +51,7 @@ public class MealActivity extends AppCompatActivity {
     }
 
     public void addItemToMeal(String name, int weight){
-        Item item = larder.getItemByName(name);
-        meal.addItemToMeal(item, weight);
+        meal.addItemToMeal(name, weight);
     }
 
     public static Calendar toCalendar(Date date) {
@@ -67,6 +68,8 @@ public class MealActivity extends AppCompatActivity {
 
 
     public void createMeal(View button) {
+
+
         EditText dayET = (EditText)findViewById(R.id.day);
         day = dayET.getText().toString();
         EditText monthET = (EditText)findViewById(R.id.month);
@@ -83,26 +86,31 @@ public class MealActivity extends AppCompatActivity {
             Log.d("Date failed", pe.getMessage());
             meal.setDate(cal);
         }
-
         EditText mealName = (EditText) findViewById(R.id.edit_name);
         name = mealName.getText().toString();
         meal.setName(name);
         meal.zeroWeight();
-        Log.d("meal", meal.getName());
 
-        SharedPreferences sharedPref = getSharedPreferences(FOODTRACKER, Context.MODE_PRIVATE);
-        String diary = sharedPref.getString("foodDiary",  new ArrayList<Meal>().toString());
-        Gson gson = new Gson();
-        TypeToken<ArrayList<Meal>> token = new TypeToken<ArrayList<Meal>>(){};
-        ArrayList<Meal> foodTracker = gson.fromJson(diary, token.getType());
+        if(day.equals("") || month.equals("") || year.equals("") || name.equals("") ) {
+            Toast toast =  Toast.makeText(getApplicationContext(), "Please input valid info",Toast.LENGTH_SHORT);
+            toast.show();
+        }
+           else {
+            SharedPreferences sharedPref = getSharedPreferences(FOODTRACKER, Context.MODE_PRIVATE);
+            String diary = sharedPref.getString("foodDiary", new ArrayList<Meal>().toString());
+            Gson gson = new Gson();
+            TypeToken<ArrayList<Meal>> token = new TypeToken<ArrayList<Meal>>() {
+            };
+            ArrayList<Meal> foodTracker = gson.fromJson(diary, token.getType());
 
-        foodTracker.add(meal);
+            foodTracker.add(meal);
 
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("foodDiary", gson.toJson(foodTracker));
-        editor.apply();
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("foodDiary", gson.toJson(foodTracker));
+            editor.apply();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 
 }

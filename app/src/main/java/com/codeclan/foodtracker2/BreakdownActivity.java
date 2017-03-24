@@ -17,27 +17,31 @@ import static com.codeclan.foodtracker2.MainActivity.FOODTRACKER;
 public class BreakdownActivity extends AppCompatActivity {
 
     Meal meal;
+    Larder larder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breakdown);
-        meal =(Meal)getIntent().getSerializableExtra("meal");
+        larder.setLarder();
+
+
+//        meal =(Meal)getIntent().getSerializableExtra("meal");
 
 
 
-        TextView name = (TextView)findViewById(R.id.name);
-        name.setText(meal.getName());
-        TextView date = (TextView)findViewById(R.id.date);
-        date.setText(meal.calendarTime().toString());
-        TextView calories = (TextView)findViewById(R.id.total_cal);
-        calories.setText(meal.getTotalCalories());
-        TextView protein = (TextView)findViewById(R.id.total_protein);
-        calories.setText(meal.getTotalProtein());
-        TextView fat = (TextView)findViewById(R.id.total_fat);
-        calories.setText(meal.getTotalFat());
-        TextView carbs = (TextView)findViewById(R.id.carb);
-        calories.setText(meal.getTotalCarbohydrates());
+//        TextView name = (TextView)findViewById(R.id.name);
+//        name.setText(meal.getName());
+//        TextView date = (TextView)findViewById(R.id.date);
+//        date.setText(meal.calendarTime().toString());
+//        TextView calories = (TextView)findViewById(R.id.total_cal);
+//        calories.setText(meal.getTotalCalories());
+//        TextView protein = (TextView)findViewById(R.id.total_protein);
+//        calories.setText(meal.getTotalProtein());
+//        TextView fat = (TextView)findViewById(R.id.total_fat);
+//        calories.setText(meal.getTotalFat());
+//        TextView carbs = (TextView)findViewById(R.id.carb);
+//        calories.setText(meal.getTotalCarbohydrates());
     }
 
 
